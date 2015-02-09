@@ -1,0 +1,40 @@
+def repeat(String str, int number){ tmp="";number.times {tmp=str};return tmp;};
+
+		 if(s.matches("(^[^\\[]*\\].*\$)")){
+			 loc=s.indexOf("]")+1;
+			 if((s.length()-loc)<=2) {
+				 int last_bit=s.length()-(loc-1);
+				print(last_bit);
+				if(last_bit==1) s=s.substring(0,loc-1)+"<";
+				if(last_bit==2) s=s.substring(0,loc-1)+"<<";
+				if(last_bit==3) s=s.substring(0,loc-1)+"<<<";
+			 };
+		
+		 if((s.length()-loc)>2){
+			 int parenths=(int)((s.length()-loc-1)/2);
+			int insides=s.length()-(2*parenths); 
+			int dot=s.indexOf(".");
+			int arrow=s.indexOf(">");
+			 if((dot<loc) && dot!=-1){
+				 s=s.substring(0,loc-1)+">"+repeat("x", s.length()-(loc-1));
+				 if((arrow<loc) && arrow!=-1){
+					 s=s.substring(0,max(loc-1,0))+"<"+repeat("x", s.length()-max(loc-1,0));	
+					}
+				};
+					print("side parenths = "+parenths);
+					 inS="";
+					if (insides==1) inS=".";
+						else {
+							if(s.indexOf(".")<loc){
+								inS=">>";
+							}
+							else{
+								inS=">.";
+							}
+						 };
+						
+						s=s.substring(0,loc)+repeat("[", parenths)+inS+repeat("]", parenths);
+						print("*"+s);
+					}};
+		
+		

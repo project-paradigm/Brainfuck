@@ -1,0 +1,69 @@
+//		DefaultTableModel m=(DefaultTableModel) table.getModel();
+//		table.prepareRenderer(arg0, arg1, arg2)
+		
+//		table.setModel(model);
+		
+//		TableColumn column = null;
+//        for (int i = 0; i < 3; i++) {
+//            column = table.getColumnModel().getColumn(i);
+//            if (i == 0) 
+//                column.setMaxWidth(10);
+//            if (i == 2)
+//                column.setMaxWidth(50);
+//        }
+//		
+		
+//		contentPane.addMouseMotionListener(M);
+//		print((String.valueOf(getWidth())));
+//		contentPane.addMouseMotionListener(new MouseMotionAdapter() {
+//			@Override
+//			public void mouseMoved(MouseEvent e) {
+//				x=e.getX();	
+//				y=e.getY();	
+//				table.setValueAt(x, 0, 0);
+//				table.setValueAt(y, 0, 1);
+//				if (x>4) cols=(int) Math.pow(x,.5);
+//				if (y>4) rows=(int) Math.pow(y,.5);
+//				dtm.setRowCount(rows);
+//				dtm.setColumnCount(cols);
+//				System.out.println("row and col#="+rows+","+cols);
+//				
+//				progressBar.setValue(x);
+//			}
+//		});
+		
+		
+//		Object rows[][] = { { "x", "0" ,"x"}, { "Amar", "what" ,"hi"},{ "x", "0" ,"x"}};
+//		Object headers[] = { "Upper", "Lower" ,"ok"}; 
+		
+//		table.addMouseMotionListener(new MouseMotionAdapter() {
+//			@Override
+//			public void mouseMoved(MouseEvent arg0) {
+//			x=arg0.getX();	
+//			table.setValueAt(x, 0, 0);
+//			progressBar.setValue(x);
+//			}
+//		});
+
+
+//	void updateCells(){
+//		String s;
+//		readStroreNext();//read from the file specified before
+//		p.generateLists();//setup lists for export reading
+//		for(int o=1;o<10;o+=2){
+//			for(int b=0;b<10;b++){
+//				p.next();
+////				System.out.println(p.stop);
+//				if (p.stop==1) return;
+////				System.out.println(p.getFeq());
+////				System.out.println(p.getString());
+//				
+//				table.setValueAt(p.getString(), o,b);
+//				table.setValueAt(p.getFeq(), o-1,b);
+//			}
+//		}
+//	}
+///-==-==-=-=-=-=--=-=---=---=
+Integer.parseInt((String) getValueAt(rowIndex-1, columnIndex))
+
+

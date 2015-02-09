@@ -1,0 +1,18 @@
+s.startsWith("<");;
+	s=s.replaceFirst("<",">");;;
+s.contains("<>");;
+	s=s.replaceAll("<>","++");;;
+s.contains("><");;
+	s=s.replaceAll("><",">+");;;
+s.contains("+-");;
+	s=s.replaceAll("[+]-","+,");;;
+s.contains("-+");;
+	s=s.replaceAll("-[+]","--");;;
+s.contains("[]");;
+	s=s.replaceAll("[\\[][\\\\]]","<+");;;
+((!s.endsWith("]") && !s.contains(".")) && !s.endsWith("."));;
+				int last=s.charAt(s.length()-1);
+				key="[<>+-,";
+				ans="]>+-,.";
+				i=key.indexOf(last);
+				s=s.subSequence(0, s.length()-1)+ans.charAt(i);;;

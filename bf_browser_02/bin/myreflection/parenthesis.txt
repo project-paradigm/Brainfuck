@@ -1,0 +1,18 @@
+create two main processes
+the "for loop" for all processes no error check
+then the watchdog process will check if timeout period for results is reached
+	and then will step in to calculate the next possible runnable code
+
+as an end result hopefully it will be faster than the normal method which was
+	just to do the smart skip process all the time... even in regions where a lot of programs were runnable..
+
+though a dynamic reference may help the most if a simplified rule base would be stored as a reference table
+for rules in a hash...
+
+
+-------------------------------------------------
+==========  tree node structure ==================
+__________________________________________________
+
+four objects 
+[ Groovy String? question , Groovy String? answer if no further question property, no to question-> , yes to question->   ]

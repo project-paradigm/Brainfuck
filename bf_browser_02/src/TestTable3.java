@@ -1,0 +1,125 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+
+public class TestTable3 {
+
+    protected void initUI() {
+        final DefaultTableModel model = new DefaultTableModel() {
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                switch (columnIndex) {
+                case 0:
+                    return Integer.class;
+                case 1:
+                case 2:
+                    return Double.class;
+                }
+                return super.getColumnClass(columnIndex);
+            }
+
+            @Override
+            public Object getValueAt(int row, int column) {
+                if (column == 2) {
+                    Integer i = (Integer) getValueAt(row, 0);
+                    Double d = (Double) getValueAt(row, 1);
+                    if (i != null && d != null) {
+                        return i * d;
+                    } else {
+                        return 0.0;
+                    }
+                }
+                return super.getValueAt(row, column);
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 0 || column == 1;
+            }
+
+            @Override
+            public void setValueAt(Object aValue, int row, int column) {
+                super.setValueAt(aValue, row, column);
+                fireTableCellUpdated(row, 2);
+            }
+
+            @Override
+            public String getColumnName(int column) {
+                switch (column) {
+                case 0:
+                    return "Quantity";
+                case 1:
+                    return "Price";
+                case 2:
+                    return "Total";
+                }
+                return super.getColumnName(column);
+            }
+
+            @Override
+            public int getColumnCount() {
+                return 3;
+            }
+            
+        };
+        
+        
+        final JTable table = new JTable(model){
+        	public Component prepareRenderer(TableCellRenderer renderer, int rowIndex,int columnIndex) {
+        		Component component = super.prepareRenderer(renderer, rowIndex, columnIndex);  
+        		
+        		if(getValueAt(rowIndex, columnIndex).toString().equals("20")){
+                	component.setBackground(Color.RED);
+                }
+        		else{
+        			component.setBackground(Color.WHITE);
+        		}
+            	return component;
+            }
+        };
+        table.setFillsViewportHeight(true);
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    if (table.rowAtPoint(e.getPoint()) < 0) {
+                        model.addRow(new Vector());
+                    }
+                }
+            }
+        });
+        model.addRow(new Vector());
+        JFrame frame = new JFrame(TestTable3.class.getSimpleName());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JScrollPane scrollpane = new JScrollPane(table);
+        frame.add(scrollpane, BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+            UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                new TestTable3().initUI();
+            }
+        });
+    }
+
+}
